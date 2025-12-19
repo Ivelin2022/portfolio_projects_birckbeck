@@ -343,6 +343,23 @@
                         </div>
                         <h1>📊 {t.title}</h1>
                         <p>{t.subtitle} | 10 {t.companies} | 2013-2023 | {STOCK_DATA.metadata.totalRecords.toLocaleString()} Records</p>
+                        <a
+                            href="data.csv"
+                            download="NASDAQ_Stock_Data.csv"
+                            style={{
+                                display: 'inline-block',
+                                marginTop: '12px',
+                                padding: '8px 20px',
+                                background: 'rgba(59,130,246,0.2)',
+                                border: '1px solid rgba(59,130,246,0.4)',
+                                borderRadius: '20px',
+                                color: '#60a5fa',
+                                textDecoration: 'none',
+                                fontSize: '0.9rem'
+                            }}
+                        >
+                            {lang === 'en' ? '📥 Download Dataset (CSV)' : '📥 Изтегли Данните (CSV)'}
+                        </a>
                     </header>
 
                     <div className="tabs">
