@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivelin Likov | Data Analytics Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+
+        .header .info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .header .info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            background: rgba(51, 65, 85, 0.6);
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: rgba(71, 85, 105, 0.8);
+            color: #e2e8f0;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 1.8rem;
+            color: #f1f5f9;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        /* Project Card */
+        .project-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-thumbnail {
+            height: 200px;
+            background: linear-gradient(135deg, #1e3a5f, #2d1b4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+        }
+
+        .project-content {
+            padding: 24px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: #f1f5f9;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #a78bfa;
+        }
+
+        .project-footer {
+            padding: 16px 24px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-project {
+            color: #60a5fa;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-project::after {
+            content: '→';
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover .view-project::after {
+            transform: translateX(4px);
+        }
+
+        .project-date {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* Coming Soon Card */
+        .coming-soon {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        .coming-soon:hover {
+            transform: none;
+            border-color: rgba(148, 163, 184, 0.1);
+            box-shadow: none;
+        }
+
+        .coming-soon .project-thumbnail {
+            background: linear-gradient(135deg, #1e293b, #334155);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 0;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 48px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-toggle {
+                position: static;
+                justify-content: center;
+                margin-bottom: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+            <button class="lang-btn" onclick="setLang('bg')" id="btn-bg">BG</button>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <h1 id="main-title">Ivelin Likov</h1>
+            <p class="subtitle" id="main-subtitle">Data Analytics Portfolio</p>
+            <div class="info">
+                <span id="info-uni">Birkbeck University of London</span>
+                
+            </div>
+        </header>
+
+        <!-- Projects Section -->
+        <h2 class="section-title" id="section-projects">Projects</h2>
+
+        <div class="projects-grid">
+            <!-- Stock Dashboard Project -->
+            <a href="stock_dashboard.html" class="project-card">
+                <div class="project-thumbnail">
+                    📊
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" id="proj1-title">NASDAQ Stock Analytics Dashboard</h3>
+                    <p class="project-description" id="proj1-desc">
+                        Interactive dashboard analyzing 10 NASDAQ companies over 10 years. Features price trends,
+                        ANOVA analysis, correlation studies, regression modeling, and Monte Carlo simulations.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Recharts</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Statistics</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <span class="view-project" id="proj1-view">View Project</span>
+                    <span class="project-date">2025</span>
+                </div>
+            </a>
+
+            <!-- Coming Soon Card -->
+            <div class="project-card coming-soon">
+                <div class="project-thumbnail">
+                    🚀
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" id="proj2-title">More Projects Coming Soon</h3>
+                    <p class="project-description" id="proj2-desc">
+                        Additional data analytics and visualization projects will be added here.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag" id="tag-coming">Coming Soon</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <span class="project-date">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p id="footer1">Birkbeck University of London</p>
+            <p id="footer2">© 2025 Ivelin Likov</p>
+        </footer>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: 'Ivelin Likov',
+                subtitle: 'Data Analytics Portfolio',
+                uni: 'Birkbeck University of London',
+                id: 'Student ID: 14208812',
+                projects: 'Projects',
+                proj1Title: 'NASDAQ Stock Analytics Dashboard',
+                proj1Desc: 'Interactive dashboard analyzing 10 NASDAQ companies over 10 years. Features price trends, ANOVA analysis, correlation studies, regression modeling, and Monte Carlo simulations.',
+                proj1View: 'View Project',
+                proj2Title: 'More Projects Coming Soon',
+                proj2Desc: 'Additional data analytics and visualization projects will be added here.',
+                tagComing: 'Coming Soon',
+                footer1: 'Birkbeck University of London',
+                footer2: '© 2025 Ivelin Likov'
+            },
+            bg: {
+                title: 'Ивелин Ликов',
+                subtitle: 'Портфолио за Анализ на Данни',
+                uni: 'Birkbeck Университет Лондон',
+                id: 'Студентски номер: 14208812',
+                projects: 'Проекти',
+                proj1Title: 'NASDAQ Табло за Анализ на Акции',
+                proj1Desc: 'Интерактивно табло, анализиращо 10 NASDAQ компании за 10 години. Включва ценови тенденции, ANOVA анализ, корелационни изследвания, регресионно моделиране и Монте Карло симулации.',
+                proj1View: 'Виж Проекта',
+                proj2Title: 'Очаквайте Още Проекти',
+                proj2Desc: 'Тук ще бъдат добавени допълнителни проекти за анализ и визуализация на данни.',
+                tagComing: 'Очаквайте Скоро',
+                footer1: 'Birkbeck Университет Лондон',
+                footer2: '© 2025 Ивелин Ликов'
+            }
+        };
+
+        function setLang(lang) {
+            const t = translations[lang];
+
+            // Update text content
+            document.getElementById('main-title').textContent = t.title;
+            document.getElementById('main-subtitle').textContent = t.subtitle;
+            document.getElementById('info-uni').textContent = t.uni;
+            document.getElementById('info-id').textContent = t.id;
+            document.getElementById('section-projects').textContent = t.projects;
+            document.getElementById('proj1-title').textContent = t.proj1Title;
+            document.getElementById('proj1-desc').textContent = t.proj1Desc;
+            document.getElementById('proj1-view').textContent = t.proj1View;
+            document.getElementById('proj2-title').textContent = t.proj2Title;
+            document.getElementById('proj2-desc').textContent = t.proj2Desc;
+            document.getElementById('tag-coming').textContent = t.tagComing;
+            document.getElementById('footer1').textContent = t.footer1;
+            document.getElementById('footer2').textContent = t.footer2;
+
+            // Update button states
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-bg').classList.toggle('active', lang === 'bg');
+
+            // Save preference
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            setLang(savedLang);
+        });
+    </script>
+</body>
+</html>
