@@ -718,36 +718,44 @@
                                 <h2>{lang === 'en' ? 'Regression: Price vs Daily Range' : 'Регресия: Цена спрямо Дневен Диапазон'}</h2>
                                 <div className="chart-container" style={{height: 450}}>
                                     <ResponsiveContainer>
-                                        <ComposedChart data={STOCK_DATA.scatterData.slice(0, 200)}>
+                                        <ScatterChart margin={{top: 20, right: 30, bottom: 40, left: 30}}>
                                             <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
-                                            <XAxis 
-                                                dataKey="close" 
-                                                stroke="#94a3b8" 
-                                                label={{value: lang === 'en' ? 'Close Price ($)' : 'Цена ($)', position: 'bottom', fill: '#94a3b8', dy: 10}}
-                                            />
-                                            <YAxis 
-                                                dataKey="dailyRange" 
+                                            <XAxis
+                                                type="number"
+                                                dataKey="close"
+                                                name="Close Price"
                                                 stroke="#94a3b8"
+                                                domain={['dataMin', 'dataMax']}
+                                                tickFormatter={(v) => '$' + v.toFixed(0)}
+                                                label={{value: lang === 'en' ? 'Close Price ($)' : 'Цена ($)', position: 'bottom', fill: '#94a3b8', offset: -5}}
+                                            />
+                                            <YAxis
+                                                type="number"
+                                                dataKey="dailyRange"
+                                                name="Daily Range"
+                                                stroke="#94a3b8"
+                                                domain={[0, 'dataMax']}
+                                                tickFormatter={(v) => '$' + v.toFixed(0)}
                                                 label={{value: lang === 'en' ? 'Daily Range ($)' : 'Диапазон ($)', angle: -90, position: 'insideLeft', fill: '#94a3b8'}}
                                             />
-                                            <Tooltip 
+                                            <Tooltip
+                                                cursor={{strokeDasharray: '3 3'}}
                                                 contentStyle={{background: '#1e293b', border: '1px solid #334155', borderRadius: 8}}
-                                                formatter={(value) => ['$' + value.toFixed(2)]}
-                                                labelFormatter={(label) => 'Close: $' + label}
+                                                formatter={(value, name) => ['$' + Number(value).toFixed(2), name]}
                                             />
-                                            <Scatter 
-                                                dataKey="dailyRange" 
-                                                fill="#8b5cf6" 
-                                                opacity={0.7}
-                                                name={lang === 'en' ? 'Daily Range' : 'Дневен Диапазон'}
+                                            <Scatter
+                                                name={lang === 'en' ? 'Trading Days' : 'Търговски Дни'}
+                                                data={STOCK_DATA.scatterData}
+                                                fill="#8b5cf6"
+                                                opacity={0.6}
                                             />
-                                        </ComposedChart>
+                                        </ScatterChart>
                                     </ResponsiveContainer>
                                 </div>
                                 <div className="interpretation">
-                                    {lang === 'en' 
-                                        ? 'Each purple dot represents a trading day. The positive correlation shows that higher-priced stocks tend to have larger daily price swings.'
-                                        : 'Всяка лилава точка представлява търговски ден. Положителната корелация показва, че акциите с по-висока цена имат по-големи дневни ценови колебания.'}
+                                    {lang === 'en'
+                                        ? 'Each purple dot represents a trading day. The positive correlation (r = 0.78) shows that higher-priced stocks tend to have larger daily price swings.'
+                                        : 'Всяка лилава точка представлява търговски ден. Положителната корелация (r = 0.78) показва, че акциите с по-висока цена имат по-големи дневни ценови колебания.'}
                                 </div>
                             </div>
                         </>
