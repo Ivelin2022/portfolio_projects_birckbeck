@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection System Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #030712;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-950 text-white">
+    <div id="app" class="p-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Back Link -->
+            <a href="../index.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors">
+                <span>←</span> Back to Portfolio
+            </a>
+
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">🔍 Fraud Detection System — Results</h1>
+                <p class="text-gray-400">Multi-Agent Pipeline Successfully Executed</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex gap-2 mb-6 flex-wrap">
+                <button onclick="setTab('overview')" id="tab-overview" class="px-4 py-2 rounded-lg font-medium capitalize transition-all bg-indigo-600 text-white">
+                    Overview
+                </button>
+                <button onclick="setTab('models')" id="tab-models" class="px-4 py-2 rounded-lg font-medium capitalize transition-all bg-gray-800 text-gray-400 hover:bg-gray-700">
+                    Models
+                </button>
+                <button onclick="setTab('evaluation')" id="tab-evaluation" class="px-4 py-2 rounded-lg font-medium capitalize transition-all bg-gray-800 text-gray-400 hover:bg-gray-700">
+                    Evaluation
+                </button>
+                <button onclick="setTab('agents')" id="tab-agents" class="px-4 py-2 rounded-lg font-medium capitalize transition-all bg-gray-800 text-gray-400 hover:bg-gray-700">
+                    Agents
+                </button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="content-overview" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <div class="text-gray-400 text-sm mb-1">Dataset Size</div>
+                        <div class="text-3xl font-bold text-white">568,630</div>
+                        <div class="text-gray-500 text-sm">transactions</div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <div class="text-gray-400 text-sm mb-1">Best Model</div>
+                        <div class="text-3xl font-bold text-indigo-400">RandomForest</div>
+                        <div class="text-gray-500 text-sm">99.99% accuracy</div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <div class="text-gray-400 text-sm mb-1">Frauds Caught</div>
+                        <div class="text-3xl font-bold text-green-400">82.6%</div>
+                        <div class="text-gray-500 text-sm">234,938 detected</div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <div class="text-gray-400 text-sm mb-1">False Alarms</div>
+                        <div class="text-3xl font-bold text-amber-400">65</div>
+                        <div class="text-gray-500 text-sm">0.02% false positive</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Models Tab -->
+            <div id="content-models" class="tab-content hidden">
+                <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Model Comparison (Test Set)</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-gray-400 border-b border-gray-700">
+                                    <th class="text-left py-3">Model</th>
+                                    <th class="text-right py-3">Accuracy</th>
+                                    <th class="text-right py-3">Precision</th>
+                                    <th class="text-right py-3">Recall</th>
+                                    <th class="text-right py-3">ROC-AUC</th>
+                                    <th class="text-right py-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-800 bg-indigo-900/20">
+                                    <td class="py-3 font-medium">Random Forest <span class="ml-2 text-xs text-indigo-400">★ BEST</span></td>
+                                    <td class="text-right py-3">99.99%</td>
+                                    <td class="text-right py-3 text-amber-400">99.99%</td>
+                                    <td class="text-right py-3 text-green-400">99.98%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9999</td>
+                                    <td class="text-right py-3"><span class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">Selected</span></td>
+                                </tr>
+                                <tr class="border-b border-gray-800">
+                                    <td class="py-3 font-medium">LightGBM</td>
+                                    <td class="text-right py-3">99.89%</td>
+                                    <td class="text-right py-3 text-amber-400">99.99%</td>
+                                    <td class="text-right py-3 text-green-400">99.78%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9999</td>
+                                    <td class="text-right py-3"><span class="px-2 py-1 bg-gray-800 text-gray-500 rounded text-xs">Trained</span></td>
+                                </tr>
+                                <tr class="border-b border-gray-800">
+                                    <td class="py-3 font-medium">XGBoost</td>
+                                    <td class="text-right py-3">98.93%</td>
+                                    <td class="text-right py-3 text-amber-400">98.68%</td>
+                                    <td class="text-right py-3 text-green-400">99.19%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9995</td>
+                                    <td class="text-right py-3"><span class="px-2 py-1 bg-gray-800 text-gray-500 rounded text-xs">Trained</span></td>
+                                </tr>
+                                <tr class="border-b border-gray-800">
+                                    <td class="py-3 font-medium">Logistic Regression</td>
+                                    <td class="text-right py-3">96.51%</td>
+                                    <td class="text-right py-3 text-amber-400">95.23%</td>
+                                    <td class="text-right py-3 text-green-400">97.92%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9933</td>
+                                    <td class="text-right py-3"><span class="px-2 py-1 bg-gray-800 text-gray-500 rounded text-xs">Trained</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Feature Importance -->
+                    <h3 class="text-lg font-semibold mt-8 mb-4">Feature Importance (RandomForest)</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V14</span>
+                                <span class="text-gray-400">16.5%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 99%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V12</span>
+                                <span class="text-gray-400">14.7%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V10</span>
+                                <span class="text-gray-400">12.8%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 77%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V17</span>
+                                <span class="text-gray-400">12.6%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 76%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V4</span>
+                                <span class="text-gray-400">8.6%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 52%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V11</span>
+                                <span class="text-gray-400">6.0%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 36%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V16</span>
+                                <span class="text-gray-400">6.0%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 36%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V7</span>
+                                <span class="text-gray-400">3.0%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 18%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluation Tab -->
+            <div id="content-evaluation" class="tab-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Confusion Matrix -->
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4">Confusion Matrix</h3>
+                        <div class="grid grid-cols-2 gap-2 max-w-sm mx-auto">
+                            <div class="bg-green-900/40 rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-green-400">284,250</div>
+                                <div class="text-xs text-gray-400">True Negative</div>
+                            </div>
+                            <div class="bg-red-900/20 rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-red-300">65</div>
+                                <div class="text-xs text-gray-400">False Positive</div>
+                            </div>
+                            <div class="bg-red-900/40 rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-red-400">49,377</div>
+                                <div class="text-xs text-gray-400">False Negative</div>
+                            </div>
+                            <div class="bg-green-900/20 rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-green-300">234,938</div>
+                                <div class="text-xs text-gray-400">True Positive</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Detection Rate</span>
+                                <span class="text-green-400 font-medium">82.63%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">False Positive Rate</span>
+                                <span class="text-amber-400 font-medium">0.02%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Missed Frauds</span>
+                                <span class="text-red-400 font-medium">49,377</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4">Evaluation Metrics</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Accuracy</span>
+                                    <span class="font-medium">91.31%</span>
+                                </div>
+                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-500 rounded-full" style="width: 91.31%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Precision</span>
+                                    <span class="font-medium">99.97%</span>
+                                </div>
+                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-amber-500 rounded-full" style="width: 99.97%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Recall</span>
+                                    <span class="font-medium">82.63%</span>
+                                </div>
+                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-green-500 rounded-full" style="width: 82.63%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">F1-Score</span>
+                                    <span class="font-medium">90.48%</span>
+                                </div>
+                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-purple-500 rounded-full" style="width: 90.48%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">ROC-AUC</span>
+                                    <span class="font-medium">99.80%</span>
+                                </div>
+                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-cyan-500 rounded-full" style="width: 99.80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warning about synthetic data -->
+                    <div class="lg:col-span-2 bg-amber-900/20 border border-amber-700/50 rounded-xl p-4">
+                        <div class="flex gap-3">
+                            <span class="text-2xl">⚠️</span>
+                            <div>
+                                <h4 class="font-semibold text-amber-400">Synthetic Data Warning</h4>
+                                <p class="text-gray-300 text-sm mt-1">
+                                    Your dataset has 50% fraud rate — this is synthetic/balanced data. 
+                                    Real credit card fraud is typically 0.1-0.3%. The 82.6% recall on production data 
+                                    is because the model learned from unrealistic distributions. 
+                                    Use the original <code class="bg-gray-800 px-1 rounded">creditcard.csv</code> (0.17% fraud) for realistic results.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agents Tab -->
+            <div id="content-agents" class="tab-content hidden">
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <h2 class="text-xl font-semibold mb-4">Agent Execution Pipeline</h2>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">1</div>
+                            <div class="flex-1">
+                                <div class="font-medium">DataAgent</div>
+                                <div class="text-sm text-gray-400">cleaned_data.parquet</div>
+                            </div>
+                            <div class="text-sm text-gray-500">4s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">2</div>
+                            <div class="flex-1">
+                                <div class="font-medium">EDAAgent</div>
+                                <div class="text-sm text-gray-400">3 plots, stats</div>
+                            </div>
+                            <div class="text-sm text-gray-500">4s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">3</div>
+                            <div class="flex-1">
+                                <div class="font-medium">FeatureAgent</div>
+                                <div class="text-sm text-gray-400">features.parquet</div>
+                            </div>
+                            <div class="text-sm text-gray-500">1s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">4</div>
+                            <div class="flex-1">
+                                <div class="font-medium">ModelAgent</div>
+                                <div class="text-sm text-gray-400">best_model.joblib</div>
+                            </div>
+                            <div class="text-sm text-gray-500">142s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">5</div>
+                            <div class="flex-1">
+                                <div class="font-medium">ReporterAgent</div>
+                                <div class="text-sm text-gray-400">report.md</div>
+                            </div>
+                            <div class="text-sm text-gray-500">&lt;1s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">6</div>
+                            <div class="flex-1">
+                                <div class="font-medium">PredictorAgent</div>
+                                <div class="text-sm text-gray-400">predictions.csv</div>
+                            </div>
+                            <div class="text-sm text-gray-500">14s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 font-bold">7</div>
+                            <div class="flex-1">
+                                <div class="font-medium">EvaluatorAgent</div>
+                                <div class="text-sm text-gray-400">evaluation_report.csv</div>
+                            </div>
+                            <div class="text-sm text-gray-500">12s</div>
+                            <div class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">✓ success</div>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Flow -->
+                    <div class="mt-8 p-4 bg-gray-800/30 rounded-lg font-mono text-sm text-gray-400 overflow-x-auto">
+                        <pre>Orchestrator
+    │
+    ├─→ DataAgent      → cleaned_data.parquet
+    ├─→ EDAAgent       → stats, plots, imbalance_ratio  
+    ├─→ FeatureAgent   → features.parquet, transformers
+    ├─→ ModelAgent     → best_model.joblib (RandomForest)
+    ├─→ ReporterAgent  → report.md
+    │
+    └─→ [On Demand]
+        ├─→ PredictorAgent  → predictions.csv
+        └─→ EvaluatorAgent  → evaluation_report.csv</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Outputs (always visible) -->
+            <div class="bg-gray-900 rounded-xl p-6 mt-6">
+                <h3 class="text-lg font-semibold mb-4">📁 Generated Files</h3>
+                <div class="font-mono text-sm text-gray-400 bg-gray-950 rounded-lg p-4 overflow-x-auto">
+                    <pre>outputs/
+├── intermediate/
+│   ├── data_agent_output.json      ✓
+│   ├── eda_agent_output.json       ✓
+│   ├── feature_agent_output.json   ✓
+│   ├── model_agent_output.json     ✓
+│   ├── cleaned_data.parquet        ✓
+│   └── features.parquet            ✓
+└── final/
+    ├── best_model.joblib           ✓ (RandomForest)
+    ├── predictions.csv             ✓ (568,630 rows)
+    ├── fraud_cases.csv             ✓ (235,003 flagged)
+    ├── missed_frauds.csv           ✓ (49,377 missed)
+    ├── evaluation_report.csv       ✓
+    ├── report.md                   ✓
+    └── figures/
+        ├── class_distribution.png  ✓
+        ├── correlation_heatmap.png ✓
+        └── feature_distributions.png ✓</pre>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-gray-500 text-sm">
+                Multi-Agent Fraud Detection System • 7 Agents • RandomForest Selected
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Reset all tab buttons
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.className = 'px-4 py-2 rounded-lg font-medium capitalize transition-all bg-gray-800 text-gray-400 hover:bg-gray-700';
+            });
+            
+            // Show selected content
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            
+            // Activate selected tab
+            document.getElementById('tab-' + tabName).className = 'px-4 py-2 rounded-lg font-medium capitalize transition-all bg-indigo-600 text-white';
+        }
+    </script>
+</body>
+</html>

@@ -317,24 +317,29 @@
                 </div>
             </a>
 
-            <!-- Coming Soon Card -->
-            <div class="project-card coming-soon">
-                <div class="project-thumbnail">
-                    🚀
+            <!-- Fraud Detection Dashboard Project -->
+            <a href="fraud-dashboard/index.html" class="project-card">
+                <div class="project-thumbnail" style="background: linear-gradient(135deg, #1e3a5f, #3b1d4e);">
+                    🔍
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title" id="proj2-title">More Projects Coming Soon</h3>
+                    <h3 class="project-title" id="proj2-title">Fraud Detection System Dashboard</h3>
                     <p class="project-description" id="proj2-desc">
-                        Additional data analytics and visualization projects will be added here.
+                        Multi-agent ML pipeline for credit card fraud detection. Features model comparison, 
+                        confusion matrix visualization, and agent execution tracking with 99.99% model accuracy.
                     </p>
                     <div class="project-tags">
-                        <span class="tag" id="tag-coming">Coming Soon</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Random Forest</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Multi-Agent</span>
                     </div>
                 </div>
                 <div class="project-footer">
-                    <span class="project-date">-</span>
+                    <span class="view-project" id="proj2-view">View Project</span>
+                    <span class="project-date">2025</span>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Footer -->
@@ -355,9 +360,9 @@
                 proj1Title: 'NASDAQ Stock Analytics Dashboard',
                 proj1Desc: 'Interactive dashboard analyzing 10 NASDAQ companies over 10 years. Features price trends, ANOVA analysis, correlation studies, regression modeling, and Monte Carlo simulations.',
                 proj1View: 'View Project',
-                proj2Title: 'More Projects Coming Soon',
-                proj2Desc: 'Additional data analytics and visualization projects will be added here.',
-                tagComing: 'Coming Soon',
+                proj2Title: 'Fraud Detection System Dashboard',
+                proj2Desc: 'Multi-agent ML pipeline for credit card fraud detection. Features model comparison, confusion matrix visualization, and agent execution tracking with 99.99% model accuracy.',
+                proj2View: 'View Project',
                 footer1: 'Birkbeck University of London',
                 footer2: '© 2025 Ivelin Likov'
             },
@@ -370,9 +375,9 @@
                 proj1Title: 'NASDAQ Табло за Анализ на Акции',
                 proj1Desc: 'Интерактивно табло, анализиращо 10 NASDAQ компании за 10 години. Включва ценови тенденции, ANOVA анализ, корелационни изследвания, регресионно моделиране и Монте Карло симулации.',
                 proj1View: 'Виж Проекта',
-                proj2Title: 'Очаквайте Още Проекти',
-                proj2Desc: 'Тук ще бъдат добавени допълнителни проекти за анализ и визуализация на данни.',
-                tagComing: 'Очаквайте Скоро',
+                proj2Title: 'Система за Откриване на Измами',
+                proj2Desc: 'Мулти-агентен ML тръбопровод за откриване на измами с кредитни карти. Включва сравнение на модели, визуализация на матрица на объркване и проследяване на агенти с 99.99% точност.',
+                proj2View: 'Виж Проекта',
                 footer1: 'Birkbeck Университет Лондон',
                 footer2: '© 2025 Ивелин Ликов'
             }
@@ -392,7 +397,7 @@
             document.getElementById('proj1-view').textContent = t.proj1View;
             document.getElementById('proj2-title').textContent = t.proj2Title;
             document.getElementById('proj2-desc').textContent = t.proj2Desc;
-            document.getElementById('tag-coming').textContent = t.tagComing;
+            document.getElementById('proj2-view').textContent = t.proj2View;
             document.getElementById('footer1').textContent = t.footer1;
             document.getElementById('footer2').textContent = t.footer2;
 
