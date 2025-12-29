@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +24,14 @@
             <div class="mb-8">
                 <h1 class="text-3xl font-bold mb-2">🔍 Fraud Detection System — Results</h1>
                 <p class="text-gray-400">Multi-Agent Pipeline Successfully Executed</p>
+                <div class="flex flex-wrap gap-4 mt-3">
+                    <a href="https://www.kaggle.com/code/ashar7777/card-fraud/input" target="_blank" class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors">
+                        <span>📊</span> View Dataset on Kaggle →
+                    </a>
+                    <a href="https://github.com/Ivelin2022/card_fraud_ML" target="_blank" class="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                        <span>💻</span> View Code on GitHub →
+                    </a>
+                </div>
             </div>
 
             <!-- Tabs -->
@@ -46,23 +55,23 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     <div class="bg-gray-900 rounded-xl p-6">
                         <div class="text-gray-400 text-sm mb-1">Dataset Size</div>
-                        <div class="text-3xl font-bold text-white">568,630</div>
+                        <div class="text-3xl font-bold text-white">284,807</div>
                         <div class="text-gray-500 text-sm">transactions</div>
                     </div>
                     <div class="bg-gray-900 rounded-xl p-6">
                         <div class="text-gray-400 text-sm mb-1">Best Model</div>
-                        <div class="text-3xl font-bold text-indigo-400">RandomForest</div>
-                        <div class="text-gray-500 text-sm">99.99% accuracy</div>
+                        <div class="text-3xl font-bold text-indigo-400">Logistic Reg.</div>
+                        <div class="text-gray-500 text-sm">ROC-AUC: 0.9802</div>
                     </div>
                     <div class="bg-gray-900 rounded-xl p-6">
-                        <div class="text-gray-400 text-sm mb-1">Frauds Caught</div>
-                        <div class="text-3xl font-bold text-green-400">82.6%</div>
-                        <div class="text-gray-500 text-sm">234,938 detected</div>
+                        <div class="text-gray-400 text-sm mb-1">Fraud Detection</div>
+                        <div class="text-3xl font-bold text-green-400">90.82%</div>
+                        <div class="text-gray-500 text-sm">89 of 98 caught</div>
                     </div>
                     <div class="bg-gray-900 rounded-xl p-6">
-                        <div class="text-gray-400 text-sm mb-1">False Alarms</div>
-                        <div class="text-3xl font-bold text-amber-400">65</div>
-                        <div class="text-gray-500 text-sm">0.02% false positive</div>
+                        <div class="text-gray-400 text-sm mb-1">Class Imbalance</div>
+                        <div class="text-3xl font-bold text-amber-400">577:1</div>
+                        <div class="text-gray-500 text-sm">0.17% fraud rate</div>
                     </div>
                 </div>
             </div>
@@ -76,123 +85,124 @@
                             <thead>
                                 <tr class="text-gray-400 border-b border-gray-700">
                                     <th class="text-left py-3">Model</th>
-                                    <th class="text-right py-3">Accuracy</th>
-                                    <th class="text-right py-3">Precision</th>
                                     <th class="text-right py-3">Recall</th>
+                                    <th class="text-right py-3">Precision</th>
+                                    <th class="text-right py-3">F1</th>
                                     <th class="text-right py-3">ROC-AUC</th>
-                                    <th class="text-right py-3">Status</th>
+                                    <th class="text-right py-3">PR-AUC</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="border-b border-gray-800 bg-indigo-900/20">
-                                    <td class="py-3 font-medium">Random Forest <span class="ml-2 text-xs text-indigo-400">★ BEST</span></td>
-                                    <td class="text-right py-3">99.99%</td>
-                                    <td class="text-right py-3 text-amber-400">99.99%</td>
-                                    <td class="text-right py-3 text-green-400">99.98%</td>
-                                    <td class="text-right py-3 text-blue-400">0.9999</td>
-                                    <td class="text-right py-3"><span class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-xs">Selected</span></td>
-                                </tr>
-                                <tr class="border-b border-gray-800">
-                                    <td class="py-3 font-medium">LightGBM</td>
-                                    <td class="text-right py-3">99.89%</td>
-                                    <td class="text-right py-3 text-amber-400">99.99%</td>
-                                    <td class="text-right py-3 text-green-400">99.78%</td>
-                                    <td class="text-right py-3 text-blue-400">0.9999</td>
-                                    <td class="text-right py-3"><span class="px-2 py-1 bg-gray-800 text-gray-500 rounded text-xs">Trained</span></td>
+                                    <td class="py-3 font-medium">Logistic Regression <span class="ml-2 text-xs text-indigo-400">★ BEST</span></td>
+                                    <td class="text-right py-3 text-green-400">90.82%</td>
+                                    <td class="text-right py-3 text-amber-400">5.81%</td>
+                                    <td class="text-right py-3">10.92%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9802</td>
+                                    <td class="text-right py-3 text-purple-400">0.7538</td>
                                 </tr>
                                 <tr class="border-b border-gray-800">
                                     <td class="py-3 font-medium">XGBoost</td>
-                                    <td class="text-right py-3">98.93%</td>
-                                    <td class="text-right py-3 text-amber-400">98.68%</td>
-                                    <td class="text-right py-3 text-green-400">99.19%</td>
-                                    <td class="text-right py-3 text-blue-400">0.9995</td>
-                                    <td class="text-right py-3"><span class="px-2 py-1 bg-gray-800 text-gray-500 rounded text-xs">Trained</span></td>
+                                    <td class="text-right py-3 text-green-400">89.80%</td>
+                                    <td class="text-right py-3 text-amber-400">7.15%</td>
+                                    <td class="text-right py-3">13.25%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9767</td>
+                                    <td class="text-right py-3 text-purple-400">0.6362</td>
                                 </tr>
                                 <tr class="border-b border-gray-800">
-                                    <td class="py-3 font-medium">Logistic Regression</td>
-                                    <td class="text-right py-3">96.51%</td>
-                                    <td class="text-right py-3 text-amber-400">95.23%</td>
-                                    <td class="text-right py-3 text-green-400">97.92%</td>
-                                    <td class="text-right py-3 text-blue-400">0.9933</td>
-                                    <td class="text-right py-3"><span class="px-2 py-1 bg-gray-800 text-gray-500 rounded text-xs">Trained</span></td>
+                                    <td class="py-3 font-medium">LightGBM</td>
+                                    <td class="text-right py-3 text-green-400">89.80%</td>
+                                    <td class="text-right py-3 text-amber-400">2.68%</td>
+                                    <td class="text-right py-3">5.21%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9379</td>
+                                    <td class="text-right py-3 text-purple-400">0.5515</td>
+                                </tr>
+                                <tr class="border-b border-gray-800">
+                                    <td class="py-3 font-medium">Random Forest</td>
+                                    <td class="text-right py-3 text-green-400">76.53%</td>
+                                    <td class="text-right py-3 text-amber-400">96.15%</td>
+                                    <td class="text-right py-3">85.23%</td>
+                                    <td class="text-right py-3 text-blue-400">0.9579</td>
+                                    <td class="text-right py-3 text-purple-400">0.8691</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <p class="text-gray-500 text-sm mt-4">Selection Criteria: Recall > PR-AUC > ROC-AUC (fraud detection is the priority)</p>
                     </div>
                     
                     <!-- Feature Importance -->
-                    <h3 class="text-lg font-semibold mt-8 mb-4">Feature Importance (RandomForest)</h3>
+                    <h3 class="text-lg font-semibold mt-8 mb-4">Feature Importance (Logistic Regression Coefficients)</h3>
                     <div class="space-y-2">
                         <div>
                             <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V1</span>
+                                <span class="text-gray-400">1.5007</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
                                 <span class="font-mono text-gray-300">V14</span>
-                                <span class="text-gray-400">16.5%</span>
+                                <span class="text-gray-400">1.2557</span>
                             </div>
                             <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 99%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="font-mono text-gray-300">V12</span>
-                                <span class="text-gray-400">14.7%</span>
-                            </div>
-                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="font-mono text-gray-300">V10</span>
-                                <span class="text-gray-400">12.8%</span>
-                            </div>
-                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 77%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="font-mono text-gray-300">V17</span>
-                                <span class="text-gray-400">12.6%</span>
-                            </div>
-                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 76%"></div>
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 84%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between text-sm mb-1">
                                 <span class="font-mono text-gray-300">V4</span>
-                                <span class="text-gray-400">8.6%</span>
+                                <span class="text-gray-400">1.2138</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 81%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V12</span>
+                                <span class="text-gray-400">1.1260</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V22</span>
+                                <span class="text-gray-400">1.1099</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 74%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V5</span>
+                                <span class="text-gray-400">0.9453</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 63%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V2</span>
+                                <span class="text-gray-400">0.8607</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 57%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-mono text-gray-300">V6</span>
+                                <span class="text-gray-400">0.7807</span>
                             </div>
                             <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
                                 <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 52%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="font-mono text-gray-300">V11</span>
-                                <span class="text-gray-400">6.0%</span>
-                            </div>
-                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 36%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="font-mono text-gray-300">V16</span>
-                                <span class="text-gray-400">6.0%</span>
-                            </div>
-                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 36%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="font-mono text-gray-300">V7</span>
-                                <span class="text-gray-400">3.0%</span>
-                            </div>
-                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full" style="width: 18%"></div>
                             </div>
                         </div>
                     </div>
@@ -204,106 +214,126 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Confusion Matrix -->
                     <div class="bg-gray-900 rounded-xl p-6">
-                        <h3 class="text-lg font-semibold mb-4">Confusion Matrix</h3>
+                        <h3 class="text-lg font-semibold mb-4">Confusion Matrix (Test Set)</h3>
                         <div class="grid grid-cols-2 gap-2 max-w-sm mx-auto">
                             <div class="bg-green-900/40 rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-green-400">284,250</div>
+                                <div class="text-2xl font-bold text-green-400">55,421</div>
                                 <div class="text-xs text-gray-400">True Negative</div>
                             </div>
                             <div class="bg-red-900/20 rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-red-300">65</div>
+                                <div class="text-2xl font-bold text-red-300">1,443</div>
                                 <div class="text-xs text-gray-400">False Positive</div>
                             </div>
                             <div class="bg-red-900/40 rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-red-400">49,377</div>
+                                <div class="text-2xl font-bold text-red-400">9</div>
                                 <div class="text-xs text-gray-400">False Negative</div>
                             </div>
                             <div class="bg-green-900/20 rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-green-300">234,938</div>
+                                <div class="text-2xl font-bold text-green-300">89</div>
                                 <div class="text-xs text-gray-400">True Positive</div>
                             </div>
                         </div>
                         
                         <div class="mt-6 space-y-2 text-sm">
                             <div class="flex justify-between">
-                                <span class="text-gray-400">Detection Rate</span>
-                                <span class="text-green-400 font-medium">82.63%</span>
+                                <span class="text-gray-400">Fraud Detection Rate (Recall)</span>
+                                <span class="text-green-400 font-medium">90.82%</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-400">False Positive Rate</span>
-                                <span class="text-amber-400 font-medium">0.02%</span>
+                                <span class="text-gray-400">Precision</span>
+                                <span class="text-amber-400 font-medium">5.81%</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Missed Frauds</span>
-                                <span class="text-red-400 font-medium">49,377</span>
+                                <span class="text-red-400 font-medium">9 (costly!)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">False Alarms</span>
+                                <span class="text-amber-400 font-medium">1,443</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Metrics -->
                     <div class="bg-gray-900 rounded-xl p-6">
-                        <h3 class="text-lg font-semibold mb-4">Evaluation Metrics</h3>
+                        <h3 class="text-lg font-semibold mb-4">Evaluation Metrics (95% CI)</h3>
                         <div class="space-y-4">
                             <div>
                                 <div class="flex justify-between text-sm mb-1">
-                                    <span class="text-gray-300">Accuracy</span>
-                                    <span class="font-medium">91.31%</span>
+                                    <span class="text-gray-300">Recall (Fraud Detection)</span>
+                                    <span class="font-medium">90.90% <span class="text-gray-500 text-xs">[85.12-95.92]</span></span>
                                 </div>
                                 <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-blue-500 rounded-full" style="width: 91.31%"></div>
+                                    <div class="h-full bg-green-500 rounded-full" style="width: 90.9%"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-sm mb-1">
                                     <span class="text-gray-300">Precision</span>
-                                    <span class="font-medium">99.97%</span>
+                                    <span class="font-medium">5.83% <span class="text-gray-500 text-xs">[4.68-6.98]</span></span>
                                 </div>
                                 <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-amber-500 rounded-full" style="width: 99.97%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-sm mb-1">
-                                    <span class="text-gray-300">Recall</span>
-                                    <span class="font-medium">82.63%</span>
-                                </div>
-                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-green-500 rounded-full" style="width: 82.63%"></div>
+                                    <div class="h-full bg-amber-500 rounded-full" style="width: 5.83%"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-sm mb-1">
                                     <span class="text-gray-300">F1-Score</span>
-                                    <span class="font-medium">90.48%</span>
+                                    <span class="font-medium">10.92%</span>
                                 </div>
                                 <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-purple-500 rounded-full" style="width: 90.48%"></div>
+                                    <div class="h-full bg-purple-500 rounded-full" style="width: 10.92%"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-sm mb-1">
                                     <span class="text-gray-300">ROC-AUC</span>
-                                    <span class="font-medium">99.80%</span>
+                                    <span class="font-medium">98.03% <span class="text-gray-500 text-xs">[96.52-99.28]</span></span>
                                 </div>
                                 <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-cyan-500 rounded-full" style="width: 99.80%"></div>
+                                    <div class="h-full bg-blue-500 rounded-full" style="width: 98.03%"></div>
                                 </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">PR-AUC</span>
+                                    <span class="font-medium">75.38%</span>
+                                </div>
+                                <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-cyan-500 rounded-full" style="width: 75.38%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">Based on 1,000 bootstrap iterations</p>
+                    </div>
+
+                    <!-- Imbalance Handling Info -->
+                    <div class="lg:col-span-2 bg-indigo-900/20 border border-indigo-700/50 rounded-xl p-4">
+                        <div class="flex gap-3">
+                            <span class="text-2xl">⚖️</span>
+                            <div>
+                                <h4 class="font-semibold text-indigo-400">Class Imbalance Handling</h4>
+                                <p class="text-gray-300 text-sm mt-1">
+                                    Dataset has <strong>577.9:1 imbalance ratio</strong> (only 0.17% fraud). 
+                                    Applied <strong>SMOTE oversampling</strong> to training data to balance classes.
+                                    Without this, models would predict majority class exclusively.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Warning about synthetic data -->
+                    <!-- Recommendations -->
                     <div class="lg:col-span-2 bg-amber-900/20 border border-amber-700/50 rounded-xl p-4">
                         <div class="flex gap-3">
-                            <span class="text-2xl">⚠️</span>
+                            <span class="text-2xl">💡</span>
                             <div>
-                                <h4 class="font-semibold text-amber-400">Synthetic Data Warning</h4>
-                                <p class="text-gray-300 text-sm mt-1">
-                                    Your dataset has 50% fraud rate — this is synthetic/balanced data. 
-                                    Real credit card fraud is typically 0.1-0.3%. The 82.6% recall on production data 
-                                    is because the model learned from unrealistic distributions. 
-                                    Use the original <code class="bg-gray-800 px-1 rounded">creditcard.csv</code> (0.17% fraud) for realistic results.
-                                </p>
+                                <h4 class="font-semibold text-amber-400">Recommendations</h4>
+                                <ul class="text-gray-300 text-sm mt-2 space-y-1">
+                                    <li>• <strong>Reduce False Positives:</strong> High FP rate may cause alert fatigue. Consider threshold tuning.</li>
+                                    <li>• <strong>Threshold Tuning:</strong> Adjust based on business cost of FP vs FN.</li>
+                                    <li>• <strong>Model Monitoring:</strong> Implement drift detection for production.</li>
+                                    <li>• <strong>Regular Retraining:</strong> Fraud patterns evolve over time.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -411,10 +441,9 @@
 │   ├── cleaned_data.parquet        ✓
 │   └── features.parquet            ✓
 └── final/
-    ├── best_model.joblib           ✓ (RandomForest)
-    ├── predictions.csv             ✓ (568,630 rows)
-    ├── fraud_cases.csv             ✓ (235,003 flagged)
-    ├── missed_frauds.csv           ✓ (49,377 missed)
+    ├── best_model.joblib           ✓ (Logistic Regression)
+    ├── predictions.csv             ✓ (284,807 rows)
+    ├── missed_frauds_analysis.csv  ✓ (9 missed)
     ├── evaluation_report.csv       ✓
     ├── report.md                   ✓
     └── figures/
@@ -426,7 +455,7 @@
 
             <!-- Footer -->
             <div class="text-center mt-8 text-gray-500 text-sm">
-                Multi-Agent Fraud Detection System • 7 Agents • RandomForest Selected
+                Multi-Agent Fraud Detection System • 7 Agents • Logistic Regression Selected • 90.82% Recall
             </div>
         </div>
     </div>

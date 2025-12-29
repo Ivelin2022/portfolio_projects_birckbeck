@@ -325,18 +325,42 @@
                 <div class="project-content">
                     <h3 class="project-title" id="proj2-title">Fraud Detection System Dashboard</h3>
                     <p class="project-description" id="proj2-desc">
-                        Multi-agent ML pipeline for credit card fraud detection. Features model comparison, 
-                        confusion matrix visualization, and agent execution tracking with 99.99% model accuracy.
+                        Multi-agent ML pipeline analyzing 284,807 transactions with 577:1 class imbalance. 
+                        Logistic Regression achieves 90.82% fraud detection rate with SMOTE handling.
                     </p>
                     <div class="project-tags">
                         <span class="tag">Machine Learning</span>
-                        <span class="tag">Random Forest</span>
+                        <span class="tag">SMOTE</span>
                         <span class="tag">Python</span>
                         <span class="tag">Multi-Agent</span>
                     </div>
                 </div>
                 <div class="project-footer">
                     <span class="view-project" id="proj2-view">View Project</span>
+                    <span class="project-date">2025</span>
+                </div>
+            </a>
+
+            <!-- Neural Network Compression Research -->
+            <a href="neural-compression/index.html" class="project-card">
+                <div class="project-thumbnail" style="background: linear-gradient(135deg, #1e4d3a, #2d1b4e);">
+                    🧠
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" id="proj3-title">Neural Network Compression Research</h3>
+                    <p class="project-description" id="proj3-desc">
+                        Research on making neural networks smaller and faster. 51 experiments on MNIST & CIFAR-10, 
+                        discovering 3D cube bottlenecks achieve 99.25% accuracy with 72% compression.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Compression</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <span class="view-project" id="proj3-view">View Project</span>
                     <span class="project-date">2025</span>
                 </div>
             </a>
@@ -361,8 +385,11 @@
                 proj1Desc: 'Interactive dashboard analyzing 10 NASDAQ companies over 10 years. Features price trends, ANOVA analysis, correlation studies, regression modeling, and Monte Carlo simulations.',
                 proj1View: 'View Project',
                 proj2Title: 'Fraud Detection System Dashboard',
-                proj2Desc: 'Multi-agent ML pipeline for credit card fraud detection. Features model comparison, confusion matrix visualization, and agent execution tracking with 99.99% model accuracy.',
+                proj2Desc: 'Multi-agent ML pipeline analyzing 284,807 transactions with 577:1 class imbalance. Logistic Regression achieves 90.82% fraud detection rate with SMOTE handling.',
                 proj2View: 'View Project',
+                proj3Title: 'Neural Network Compression Research',
+                proj3Desc: 'Research on making neural networks smaller and faster. 51 experiments on MNIST & CIFAR-10, discovering 3D cube bottlenecks achieve 99.25% accuracy with 72% compression.',
+                proj3View: 'View Project',
                 footer1: 'Birkbeck University of London',
                 footer2: '© 2025 Ivelin Likov'
             },
@@ -376,8 +403,11 @@
                 proj1Desc: 'Интерактивно табло, анализиращо 10 NASDAQ компании за 10 години. Включва ценови тенденции, ANOVA анализ, корелационни изследвания, регресионно моделиране и Монте Карло симулации.',
                 proj1View: 'Виж Проекта',
                 proj2Title: 'Система за Откриване на Измами',
-                proj2Desc: 'Мулти-агентен ML тръбопровод за откриване на измами с кредитни карти. Включва сравнение на модели, визуализация на матрица на объркване и проследяване на агенти с 99.99% точност.',
+                proj2Desc: 'Мулти-агентен ML тръбопровод анализиращ 284,807 транзакции с 577:1 дисбаланс. Логистична регресия постига 90.82% откриване на измами със SMOTE.',
                 proj2View: 'Виж Проекта',
+                proj3Title: 'Изследване на Компресия на Невронни Мрежи',
+                proj3Desc: 'Изследване за по-малки и по-бързи невронни мрежи. 51 експеримента с MNIST и CIFAR-10, откриващи 3D куб тесни места с 99.25% точност и 72% компресия.',
+                proj3View: 'Виж Проекта',
                 footer1: 'Birkbeck Университет Лондон',
                 footer2: '© 2025 Ивелин Ликов'
             }
@@ -398,6 +428,9 @@
             document.getElementById('proj2-title').textContent = t.proj2Title;
             document.getElementById('proj2-desc').textContent = t.proj2Desc;
             document.getElementById('proj2-view').textContent = t.proj2View;
+            document.getElementById('proj3-title').textContent = t.proj3Title;
+            document.getElementById('proj3-desc').textContent = t.proj3Desc;
+            document.getElementById('proj3-view').textContent = t.proj3View;
             document.getElementById('footer1').textContent = t.footer1;
             document.getElementById('footer2').textContent = t.footer2;
 

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Compression Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #030712; }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-950 text-white">
+    <div class="p-6">
+        <div class="max-w-5xl mx-auto">
+            <!-- Back Link -->
+            <a href="../index.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors">
+                <span>←</span> Back to Portfolio
+            </a>
+
+            <!-- Header -->
+            <div class="mb-10">
+                <h1 class="text-4xl font-bold mb-3 gradient-text">Neural Network Compression</h1>
+                <p class="text-xl text-gray-300 mb-2">Research Report: Experiments, Failures, and Discoveries</p>
+                <p class="text-gray-500">From Low-Rank Matrix Factorisation to 3D Cube Bottlenecks • 51 Models Tested • December 2025</p>
+                <a href="Complete_Combined_Research_Report_fixed.docx" download class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-colors">
+                    <span>📄</span> Download Full Report (DOCX)
+                </a>
+            </div>
+
+            <!-- Executive Summary -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">
+                    <span class="text-amber-400">📋</span> Executive Summary
+                </h2>
+                <p class="text-gray-300 mb-4">
+                    This report documents my exploration of neural network compression. The goal was simple: 
+                    make neural networks smaller and faster without losing accuracy. Through <strong class="text-white">51 experiments</strong> 
+                    on two datasets (MNIST and CIFAR-10), I discovered several important findings.
+                </p>
+                <h3 class="text-lg font-medium text-white mb-3">Key Discoveries:</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 mt-1">✓</span>
+                        <span><strong class="text-white">Simpler architectures beat complex ones</strong> — standard deep learning tricks actually made things worse</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 mt-1">✓</span>
+                        <span><strong class="text-white">There's a "performance cliff"</strong> — too many compression stages cause dramatic failure</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 mt-1">✓</span>
+                        <span><strong class="text-white">3D cube bottlenecks beat flat compression</strong> — preserving spatial structure helps</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 mt-1">✓</span>
+                        <span><strong class="text-white">Optimal compression depends on data complexity</strong> — simple data needs fewer stages</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Best Results Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-gray-900 rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold text-green-400">99.25%</div>
+                    <div class="text-gray-400 mt-1">Best MNIST Accuracy</div>
+                    <div class="text-sm text-gray-500">with 72% compression</div>
+                </div>
+                <div class="bg-gray-900 rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold text-blue-400">51</div>
+                    <div class="text-gray-400 mt-1">Models Tested</div>
+                    <div class="text-sm text-gray-500">across 2 datasets</div>
+                </div>
+                <div class="bg-gray-900 rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold text-purple-400">80%</div>
+                    <div class="text-gray-400 mt-1">Parameter Reduction</div>
+                    <div class="text-sm text-gray-500">with only 1.12% accuracy loss</div>
+                </div>
+            </div>
+
+            <!-- Part 1: The Problem -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Part 1: The Problem</h2>
+                <p class="text-gray-300 mb-4">
+                    Neural networks have many parameters (weights). A simple network for image classification 
+                    might have <strong class="text-white">370,000+ parameters</strong>. This creates problems:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-800/50 rounded-lg p-4">
+                        <div class="text-amber-400 font-medium mb-1">⚡ Slower Inference</div>
+                        <div class="text-gray-400 text-sm">More calculations needed per prediction</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-lg p-4">
+                        <div class="text-amber-400 font-medium mb-1">💾 Memory Usage</div>
+                        <div class="text-gray-400 text-sm">Large models don't fit on edge devices</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-lg p-4">
+                        <div class="text-amber-400 font-medium mb-1">🔋 Battery Drain</div>
+                        <div class="text-gray-400 text-sm">More compute = more power consumption</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-lg p-4">
+                        <div class="text-amber-400 font-medium mb-1">💰 Cloud Costs</div>
+                        <div class="text-gray-400 text-sm">Larger models cost more to run</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 2: The Solution -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Part 2: Low-Rank Matrix Factorisation</h2>
+                <p class="text-gray-300 mb-4">
+                    The core idea: instead of a large matrix, use two smaller matrices that multiply together. 
+                    This reduces parameters while preserving the network's ability to learn.
+                </p>
+                <div class="bg-gray-800/30 rounded-lg p-4 font-mono text-sm text-gray-400 overflow-x-auto">
+                    <pre>Original: 784 × 256 = 200,704 parameters
+Factorised: (784 × 64) + (64 × 256) = 66,560 parameters
+Savings: 67% fewer parameters!</pre>
+                </div>
+            </div>
+
+            <!-- Part 3: Key Finding - Performance Cliff -->
+            <div class="bg-red-900/20 border border-red-700/50 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-red-400">⚠️ The Performance Cliff</h2>
+                <p class="text-gray-300 mb-4">
+                    Going from 2 to 3 compression stages on MNIST caused accuracy to drop from 
+                    <strong class="text-white">~93% to ~65%</strong> — a massive 28% drop! 
+                    This isn't gradual decline; it's a cliff.
+                </p>
+                <p class="text-gray-400">
+                    Think of it like photocopying a photocopy. Each generation loses quality. 
+                    Copy once, it's fine. Copy many times, it becomes unreadable.
+                </p>
+            </div>
+
+            <!-- Part 4: Breakthrough - 3D Cube -->
+            <div class="bg-green-900/20 border border-green-700/50 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-green-400">🎯 Breakthrough: 3D Cube Bottleneck</h2>
+                <p class="text-gray-300 mb-4">
+                    All previous approaches flattened images into a long list of pixels, losing spatial structure. 
+                    I tried something different: <strong class="text-white">compress into a 3D cube shape instead</strong>.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-gray-800/50 rounded-lg p-4">
+                        <div class="text-gray-400 text-sm mb-1">Traditional (Flat 1D)</div>
+                        <div class="text-xl font-bold text-gray-300">784 → 64 numbers in a row</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-lg p-4">
+                        <div class="text-green-400 text-sm mb-1">New Approach (3D Cube)</div>
+                        <div class="text-xl font-bold text-white">784 → 4×4×4 cube (64 numbers in 3D)</div>
+                    </div>
+                </div>
+                <p class="text-gray-300 mt-4">
+                    <strong class="text-white">Result:</strong> 6×6×6 is the optimal cube size for MNIST. 
+                    <span class="text-green-400">99.25% accuracy with 72% compression</span> — excellent!
+                </p>
+            </div>
+
+            <!-- Part 5: CIFAR-10 -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Part 4: CIFAR-10 Experiments</h2>
+                <p class="text-gray-300 mb-4">
+                    Based on MNIST findings (2 stages optimal), I hypothesized that more complex data 
+                    might need more gradual compression — perhaps 3 stages instead of 2.
+                </p>
+                <div class="bg-indigo-900/30 border border-indigo-700/50 rounded-lg p-4">
+                    <div class="text-indigo-400 font-medium mb-2">Hypothesis Confirmed:</div>
+                    <p class="text-gray-300">
+                        3-stage architectures work better than 2-stage for CIFAR-10 
+                        (<span class="text-white">62.82% vs 61.28%</span>). 
+                        More complex data needs more gradual compression.
+                    </p>
+                </div>
+                <p class="text-gray-300 mt-4">
+                    <strong class="text-white">The 3D cube approach wins on CIFAR-10 too:</strong> 
+                    Better accuracy, fewer parameters, and faster training!
+                </p>
+            </div>
+
+            <!-- Part 6: Validation -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Part 6: Proving Results Are Valid</h2>
+                <div class="flex items-center gap-4 bg-green-900/20 border border-green-700/50 rounded-lg p-4">
+                    <div class="text-4xl">✅</div>
+                    <div>
+                        <div class="text-green-400 font-medium">No Overfitting Detected</div>
+                        <p class="text-gray-300 text-sm">
+                            A gap less than 2% is healthy. Our <strong class="text-white">0.87% gap</strong> 
+                            confirms the model learned generalizable features and did not just memorise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusions -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Conclusions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-gray-300">Low-rank compression works: 80% parameter reduction with only 1.12% accuracy loss</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-gray-300">3D cubes beat flat compression: preserving spatial structure gives better results</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-gray-300">Simpler is better: adding complexity hurt performance in every test</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-gray-300">Optimal stages depend on complexity: MNIST needs 2, CIFAR-10 needs 3</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <span class="text-amber-400">⚠</span>
+                            <span class="text-gray-300">Performance cliffs exist: too many stages causes catastrophic failure</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-blue-400">💡</span>
+                            <span class="text-gray-300">Standard techniques don't always transfer to compression contexts</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-purple-400">🔬</span>
+                            <span class="text-gray-300">Most cube positions are redundant: potential for even more compression</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-gray-300">Results are valid: 0.87% overfitting gap proves generalizable learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why This Matters -->
+            <div class="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 border border-indigo-700/30 rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Why This Matters</h2>
+                <p class="text-gray-300 mb-4">Compressed models enable deployment on resource-constrained devices:</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div class="bg-gray-900/50 rounded-lg p-3 text-center">
+                        <div class="text-2xl mb-1">📱</div>
+                        <div class="text-sm text-gray-400">Mobile Apps</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-lg p-3 text-center">
+                        <div class="text-2xl mb-1">🔌</div>
+                        <div class="text-sm text-gray-400">Edge & IoT</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-lg p-3 text-center">
+                        <div class="text-2xl mb-1">🌐</div>
+                        <div class="text-sm text-gray-400">Browser AI</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-lg p-3 text-center">
+                        <div class="text-2xl mb-1">💰</div>
+                        <div class="text-sm text-gray-400">Cost Savings</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-lg p-3 text-center">
+                        <div class="text-2xl mb-1">🌱</div>
+                        <div class="text-sm text-gray-400">Environmental</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center text-gray-500 text-sm mt-8">
+                Neural Network Compression Research • 51 Models • MNIST & CIFAR-10 • December 2025
+            </div>
+        </div>
+    </div>
+</body>
+</html>
